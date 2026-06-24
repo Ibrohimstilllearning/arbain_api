@@ -1,10 +1,19 @@
 const express = require("express");
 const haditsData = require("./data/hadits.json");
-const { error } = require("node:console");
+const helmet = require("helmet");
+const rateLimit = require("express-rate-limit");
+const cors = require("cors");
 
 
 const app = express();
 const PORT = 8080;
+
+app.use(helmet());
+app.use(cors());
+app.use(rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100
+}))
 
 app.listen(PORT, ()=>{
     console.log(`Server on http://localhost:${PORT}/hadits`);
