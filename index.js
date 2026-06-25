@@ -19,6 +19,10 @@ app.listen(PORT, ()=>{
     console.log(`Server on http://localhost:${PORT}/hadits`);
 })
 
+app.get('/', (req, res) => {
+    res.redirect('/hadits');
+});
+
 app.get('/hadits', (req, res) => {
     res.status(200).json(haditsData);
 })
