@@ -6,7 +6,7 @@ const cors = require("cors");
 
 
 const app = express();
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 
 app.use(helmet());
 app.use(cors());
@@ -33,3 +33,4 @@ app.get('/hadits/:id', (req, res) => {
 
     res.status(200).json(hadits);
 })
+module.exports = app;
